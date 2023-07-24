@@ -10,30 +10,31 @@ public class StudentManager {
 //	sorting and writing tasks
 	
 	public Student[] separateStudentsByCourse(Student[] students, String course) {
-		
-		Student[] courseStudents = new Student[students.length];
-		
-		int index = 0;
+				
+		int count = 0; 
 		
 		for (Student student : students) {
-			if (student.getCourse().equals(course)) {
-				courseStudents[index] = student;
-				index++;
-//				System.out.println(Arrays.toString(courseStudents));
+			if (student != null && student.getCourse().trim().equalsIgnoreCase(course)) {
+				count++;
+				System.out.println(Arrays.toString(students));
 			}
 		}
 		
-		Student[] trimmedCourseStudents = new Student[index];
-		for (int i = 0; i < index; i++) {
-			trimmedCourseStudents[i] = courseStudents[i];
+		Student[] courseStudents = new Student[count];
+		int index = 0;
+		
+		for (Student student : students) {
+			if (student != null && student.getCourse().trim().equalsIgnoreCase(course)) {
+				courseStudents[index++] = student;
+			}
 		}
-		return trimmedCourseStudents;
+		return courseStudents;
 	}
 	
 	public void sortStudentsByGrade(Student[] students) {
 //		System.out.println(Arrays.toString(students));
-		Arrays.sort(students, new StudentGradeComparator());
-//		System.out.println(Arrays.toString(students));		
+		Arrays.sort(students);
+		System.out.println(Arrays.toString(students));		
 		}
 	
 	public void writeStudentsToCsv(Student[] students, String fileName) throws IOException {
@@ -48,6 +49,7 @@ public class StudentManager {
 						
 				String line = studentID + "," + studentName + "," + course + "," + grade + "\n"; 	
 				writer.write(line);
+//				System.out.println(Arrays.toString(students));
 			}
 			
 		} catch (IOException e) {

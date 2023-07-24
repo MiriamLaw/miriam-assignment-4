@@ -9,7 +9,7 @@ public class DataScienceApplication {
 		FileService fileService = new FileService();
 		Student[] students = fileService.readStudentsFromCsv("student-master-list.csv");
 		
-		StudentManager studentManager = new StudentManager();
+		StudentManager studentManager = new StudentManager(); 
 		Student[] course1Students = studentManager.separateStudentsByCourse(students, "COMPSCI");
 		Student[] course2Students = studentManager.separateStudentsByCourse(students, "STAT");
 		Student[] course3Students = studentManager.separateStudentsByCourse(students, "APMTH");

@@ -1,18 +1,18 @@
 package com.coderscampus.assignment4;
 
-public class Student {
+public class Student implements Comparable<Student> {
 
 	int studentID;
 	String studentName;
 	String course;
 	int grade;
-	
+
 	public Student(int studentID, String studentName, String course, int grade) {
 		this.studentID = studentID;
 		this.studentName = studentName;
 		this.course = course;
 		this.grade = grade;
-		
+
 	}
 
 	public int getStudentID() {
@@ -31,8 +31,14 @@ public class Student {
 		this.studentName = studentName;
 	}
 
+	@Override
+	public String toString() {
+		return "Student [studentID=" + studentID + ", studentName=" + studentName + ", course=" + course + ", grade="
+				+ grade + "]";
+	}
+
 	public String getCourse() {
-		return course;
+		return this.course;
 	}
 
 	public void setCourse(String course) {
@@ -45,6 +51,13 @@ public class Student {
 
 	public void setGrade(int grade) {
 		this.grade = grade;
+	}
+
+	@Override
+	public int compareTo(Student that) {
+
+		return Integer.compare(this.getGrade(), that.getGrade());
+
 	}
 
 }

@@ -4,49 +4,46 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class FileService {
 
-	public Student[] readStudentsFromCsv(String filName) throws IOException {
+	public Student[] readStudentsFromCsv(String fileName) throws IOException {
 
 		Student[] students = new Student[100];
-		
-			try (FileInputStream fileInput = new FileInputStream("student-master-list.csv"); // try with resources
-					InputStreamReader inputReader = new InputStreamReader(fileInput);
-					BufferedReader reader = new BufferedReader(inputReader);) {
+		int studentCount = 0;
 
-				reader.readLine(); // skip header line in master csv list
+		try (FileInputStream fileInput = new FileInputStream("student-master-list.csv"); // try with resources
+				InputStreamReader inputReader = new InputStreamReader(fileInput);
+				BufferedReader reader = new BufferedReader(inputReader);) {
 
-				String line;
-				int index = 0; // index for # of students read
-				while ((line = reader.readLine()) != null) {
-					String[] data = line.split(",");
-					if (data.length == 4) {
-						int studentID = Integer.parseInt(data[0]);
-						String studentName = data[1];
-						String course = data[2];
-						int grade = Integer.parseInt(data[3]);
+			reader.readLine(); // skip header line in master csv list
 
-						Student student = new Student(studentID, studentName, course, grade);
+			String line;
+			while ((line = reader.readLine()) != null) {
+				String[] data = line.split(",");
+				if (data.length == 4) {
+					int studentID = Integer.parseInt(data[0]);
+					String studentName = data[1];
+					String course = data[2];
+					int grade = Integer.parseInt(data[3]);
 
-//				add students to the array at the current index
-						students[index] = student;
-						index++;
-					}
+					Student student = new Student(studentID, studentName, course, grade);
 
+					students[studentCount] = student;
+					studentCount++;
 				}
 
-//		resize the array to actual number of students read and copy elements manually
-				Student[] trimmedStudents = new Student[index];
-				for (int i = 0; i < index; i++) {
-					trimmedStudents[i] = students[i];
-				}
-				students = trimmedStudents;
+			}
+////			for (Student student : students) {
+////				System.out.println(student.getCourse()); //we added these two lines to have console printout
+//			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw e;
 		}
-		return students;
+		
+		return Arrays.copyOf(students, studentCount);
 	}
 }
