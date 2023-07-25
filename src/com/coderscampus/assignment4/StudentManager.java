@@ -3,55 +3,70 @@ package com.coderscampus.assignment4;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class StudentManager {
-	
+
 //	sorting and writing tasks
-	
+
 	public Student[] separateStudentsByCourse(Student[] students, String course) {
-				
-		int count = 0; 
-		
+		System.out.println("Requested Course: " + course);
+		List<Student> courseStudents = new ArrayList<>();
+//		int count = 0;
+
+
 		for (Student student : students) {
+			System.out.println("Student Course: " + student.getCourse());
 			if (student != null && student.getCourse().trim().equalsIgnoreCase(course)) {
-				count++;
-				System.out.println(Arrays.toString(students));
+				courseStudents.add(student);
 			}
 		}
-		
-		Student[] courseStudents = new Student[count];
-		int index = 0;
-		
-		for (Student student : students) {
-			if (student != null && student.getCourse().trim().equalsIgnoreCase(course)) {
-				courseStudents[index++] = student;
-			}
-		}
-		return courseStudents;
+		System.out.println("Course: " + course + ", count: " + courseStudents.size());
+		System.out.println("Course: " + course + ", courseStudents: " + courseStudents);
+
+//		Student[] courseStudents = new Student[count];
+//		int index = 0;
+//
+//		for (Student student : students) {
+//			if (student != null && student.getCourse().trim().equalsIgnoreCase(course)) {
+//				courseStudents[index++] = student;
+
+	
+		return courseStudents.toArray(new Student[0]);
 	}
-	
+
 	public void sortStudentsByGrade(Student[] students) {
-//		System.out.println(Arrays.toString(students));
-		Arrays.sort(students);
-		System.out.println(Arrays.toString(students));		
-		}
-	
+		Student[] compsciStudents = separateStudentsByCourse(students, "COMPSCI");
+		Student[] statStudents = separateStudentsByCourse(students, "STAT");
+		Student[] apmthStudents = separateStudentsByCourse(students, "APMTH");
+
+		Arrays.sort(compsciStudents);
+		Arrays.sort(statStudents);
+		Arrays.sort(apmthStudents);
+
+		
+	}
+
 	public void writeStudentsToCsv(Student[] students, String fileName) throws IOException {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
 			writer.write("StudentID, Student Name, Course, Grade\n");
 //			System.out.println(Arrays.toString(students));
 			for (Student student : students) {
-				int studentID = student.getStudentID();
-				String studentName = student.getStudentName();
-				String course = student.getCourse();
-				int grade = student.getGrade();
-						
-				String line = studentID + "," + studentName + "," + course + "," + grade + "\n"; 	
-				writer.write(line);
+				if (student != null) {
+					int studentID = student.getStudentID();
+					String studentName = student.getStudentName();
+					String course = student.getCourse();
+					int grade = student.getGrade();
+
+					String line = studentID + "," + studentName + "," + course + "," + grade + "\n";
+					System.out.println("Writing line: " + line);
+					writer.write(line);
 //				System.out.println(Arrays.toString(students));
+				}
 			}
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

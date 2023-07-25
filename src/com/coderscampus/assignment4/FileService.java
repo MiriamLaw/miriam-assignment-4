@@ -35,15 +35,17 @@ public class FileService {
 				}
 
 			}
-////			for (Student student : students) {
-////				System.out.println(student.getCourse()); //we added these two lines to have console printout
-//			}
+			for (Student student : students) {
+				if (student != null) {
+					System.out.println(student); // we added these two lines to have console printout
+				}
+			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw e;
 		}
-		
+
 		return Arrays.copyOf(students, studentCount);
 	}
 }
