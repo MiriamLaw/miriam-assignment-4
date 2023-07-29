@@ -1,25 +1,24 @@
 package com.coderscampus.assignment4;
 
 public class Student implements Comparable<Student> {
+	
+	private Integer studentID;
+	private String studentName;
+	private String course;
+	private Integer grade;
 
-	int studentID;
-	String studentName;
-	String course;
-	int grade;
-
-	public Student(int studentID, String studentName, String course, int grade) {
+	public Student(Integer studentID, String studentName, String course, Integer grade) {
 		this.studentID = studentID;
 		this.studentName = studentName;
 		this.course = course;
 		this.grade = grade;
-
 	}
 
-	public int getStudentID() {
+	public Integer getStudentID() {
 		return studentID;
 	}
 
-	public void setStudentID(int studentID) {
+	public void setStudentID(Integer studentID) {
 		this.studentID = studentID;
 	}
 
@@ -45,11 +44,11 @@ public class Student implements Comparable<Student> {
 		this.course = course;
 	}
 
-	public int getGrade() {
+	public Integer getGrade() {
 		return grade;
 	}
 
-	public void setGrade(int grade) {
+	public void setGrade(Integer grade) {
 		this.grade = grade;
 	}
 
