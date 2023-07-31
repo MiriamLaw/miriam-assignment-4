@@ -58,7 +58,7 @@ public class Student implements Comparable<Student> {
 			return 1;
 
 		} else {
-			return Integer.compare(this.getGrade(), that.getGrade());
+			return Integer.compare(that.getGrade(), this.getGrade());
 
 		}
 

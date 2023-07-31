@@ -34,6 +34,7 @@ public class StudentManager {
 			for (Student student : courseStudents) {
 				if (student != null) {
 					exactStudentsByCourse[index] = student;
+					index++;
 				}
 			}
 			Arrays.sort(exactStudentsByCourse);
@@ -74,25 +75,25 @@ public class StudentManager {
 
 	// Want 3 different arrays by Grade
 //  [ This method get's Grade ]
-	public void sortStudentsByGrade(Student[] students) {
-		Student[] courseGrades = new Student[students.length];
-		int count = 0;
-
-		for (Student student : students) {
-			Integer studentGrade = student.getGrade();
-
-			System.out.println(studentGrade);
-		}
-
-		Student[] compsciStudents = separateStudentsByCourse(students, "COMPSCI");
-		Student[] statStudents = separateStudentsByCourse(students, "STAT");
-		Student[] apmthStudents = separateStudentsByCourse(students, "APMTH");
-
-		Arrays.sort(compsciStudents);
-		Arrays.sort(statStudents);
-		Arrays.sort(apmthStudents);
-
-	}
+//	public void sortStudentsByGrade(Student[] students) {
+//		Student[] courseGrades = new Student[students.length];
+//		int count = 0;
+//
+//		for (Student student : students) {
+//			Integer studentGrade = student.getGrade();
+//
+//			System.out.println(studentGrade);
+//		}
+//
+//		Student[] compsciStudents = separateStudentsByCourse(students, "COMPSCI");
+//		Student[] statStudents = separateStudentsByCourse(students, "STAT");
+//		Student[] apmthStudents = separateStudentsByCourse(students, "APMTH");
+//
+//		Arrays.sort(compsciStudents);
+//		Arrays.sort(statStudents);
+//		Arrays.sort(apmthStudents);
+//
+//	}
 
 	public void writeStudentsToCsv(Student[] students, String fileName) throws IOException {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
