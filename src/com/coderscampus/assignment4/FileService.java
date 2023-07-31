@@ -31,13 +31,13 @@ public class FileService {
 				
 
 			}
-//			for (Student student : students) {
-//				if (student != null) {
-//					// DN: PRINTS ALL THE DATA OF EACH STUDENT FIRST BEFORE ANY OTHER SYSOUT.
-//					// we added these two lines to have console printout
-////					System.out.println(student); 
-//				}
-//			}
+			for (Student student : students) {
+				if (student != null) {
+					// DN: PRINTS ALL THE DATA OF EACH STUDENT FIRST BEFORE ANY OTHER SYSOUT.
+					// we added these two lines to have console printout
+					System.out.println(student); 
+				}
+			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -48,7 +48,7 @@ public class FileService {
 // 		Allow the whole Student object through and grab what you need within the StudentManager.java file
 		
 //		return Arrays.copyOf(students, studentCount);
-//		DN: System.out.println(students);
+//		System.out.println(students);
 		return students;
 
 	}

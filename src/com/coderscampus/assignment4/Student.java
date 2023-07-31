@@ -1,7 +1,7 @@
 package com.coderscampus.assignment4;
 
 public class Student implements Comparable<Student> {
-	
+
 	private Integer studentID;
 	private String studentName;
 	private String course;
@@ -54,9 +54,13 @@ public class Student implements Comparable<Student> {
 
 	@Override
 	public int compareTo(Student that) {
+		if (that == null) {
+			return 1;
 
-		return Integer.compare(this.getGrade(), that.getGrade());
+		} else {
+			return Integer.compare(this.getGrade(), that.getGrade());
+
+		}
 
 	}
-
 }
