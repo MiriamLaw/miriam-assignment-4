@@ -11,7 +11,7 @@ public class FileService {
 
 		Student[] students = new Student[100];
 		int studentCount = 0;
-															
+
 		try (FileInputStream fileInput = new FileInputStream(fileName); // try with resources
 				InputStreamReader inputReader = new InputStreamReader(fileInput);
 				BufferedReader reader = new BufferedReader(inputReader);) {
@@ -20,23 +20,15 @@ public class FileService {
 			String line;
 			while ((line = reader.readLine()) != null) {
 				String[] data = line.split(",");
-					Integer studentID = Integer.parseInt(data[0]);
-					String studentName = data[1];
-					String course = data[2];
-					Integer grade = Integer.parseInt(data[3]);
+				Integer studentID = Integer.parseInt(data[0]);
+				String studentName = data[1];
+				String course = data[2];
+				Integer grade = Integer.parseInt(data[3]);
 
-					Student student = new Student(studentID, studentName, course, grade);
-					students[studentCount] = student;
-					studentCount++;
-				
+				Student student = new Student(studentID, studentName, course, grade);
+				students[studentCount] = student;
+				studentCount++;
 
-			}
-			for (Student student : students) {
-				if (student != null) {
-					// DN: PRINTS ALL THE DATA OF EACH STUDENT FIRST BEFORE ANY OTHER SYSOUT.
-					// we added these two lines to have console printout
-					System.out.println(student); 
-				}
 			}
 
 		} catch (IOException e) {
@@ -44,11 +36,6 @@ public class FileService {
 			throw e;
 		}
 
-// 		This is not the area where you want to limit the data you pass on.
-// 		Allow the whole Student object through and grab what you need within the StudentManager.java file
-		
-//		return Arrays.copyOf(students, studentCount);
-//		System.out.println(students);
 		return students;
 
 	}
