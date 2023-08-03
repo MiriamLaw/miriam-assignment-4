@@ -12,11 +12,11 @@ public class FileService {
 		Student[] students = new Student[100];
 		int studentCount = 0;
 
-		try (FileInputStream fileInput = new FileInputStream(fileName); // try with resources
+		try (FileInputStream fileInput = new FileInputStream(fileName);
 				InputStreamReader inputReader = new InputStreamReader(fileInput);
 				BufferedReader reader = new BufferedReader(inputReader);) {
 
-			reader.readLine(); // skip header line in master csv list
+			reader.readLine();
 			String line;
 			while ((line = reader.readLine()) != null) {
 				String[] data = line.split(",");

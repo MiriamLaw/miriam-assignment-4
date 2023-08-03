@@ -7,8 +7,6 @@ import java.util.Arrays;
 
 public class StudentManager {
 
-	// sorting and writing tasks
-
 	public Student[] separateStudentsByCourse(Student[] students, String course) {
 		try {
 			Student[] courseStudents = new Student[students.length];
@@ -23,13 +21,14 @@ public class StudentManager {
 					continue;
 				}
 			}
-			int myCounts = 0;// to count all values that aren't null because that's the size of each list array
+			int myCounts = 0;
+
 			for (Student student : courseStudents) {
 				if (student != null)
 					myCounts++;
 			}
-			Student[] exactStudentsByCourse = new Student[myCounts];// new array with capacity of myCounts (exact array
-																	// size)
+			Student[] exactStudentsByCourse = new Student[myCounts];
+
 			int index = 0;
 			for (Student student : courseStudents) {
 				if (student != null) {
@@ -41,7 +40,7 @@ public class StudentManager {
 			return exactStudentsByCourse;
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("An ArrayIndexOutOfBoundsException occurred: " + e.getMessage());
-			// Handle the exception or take appropriate action
+
 			return null;
 		}
 

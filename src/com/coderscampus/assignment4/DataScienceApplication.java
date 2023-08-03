@@ -17,9 +17,6 @@ public class DataScienceApplication {
 		studentManager.writeStudentsToCsv(course1Students, "course1.csv");
 		studentManager.writeStudentsToCsv(course2Students, "course2.csv");
 		studentManager.writeStudentsToCsv(course3Students, "course3.csv");
-//		for (Student student : course1Students) {
-//			System.out.println(student);
-//		}
 
 	}
 }
