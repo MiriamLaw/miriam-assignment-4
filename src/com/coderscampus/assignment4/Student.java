@@ -11,7 +11,7 @@ public class Student implements Comparable<Student> {
 		this.studentID = studentID;
 		this.studentName = studentName;
 		this.course = course;
-		this.grade = grade;
+		this.grade = grade; 
 	}
 
 	public Integer getStudentID() {

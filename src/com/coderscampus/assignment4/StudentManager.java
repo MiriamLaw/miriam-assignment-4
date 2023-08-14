@@ -1,9 +1,6 @@
 package com.coderscampus.assignment4;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 
 public class StudentManager {
 
@@ -36,7 +33,6 @@ public class StudentManager {
 					index++;
 				}
 			}
-			Arrays.sort(exactStudentsByCourse);
 			return exactStudentsByCourse;
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("An ArrayIndexOutOfBoundsException occurred: " + e.getMessage());
@@ -46,24 +42,12 @@ public class StudentManager {
 
 	}
 
-	public void writeStudentsToCsv(Student[] students, String fileName) throws IOException {
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-			writer.write("StudentID, Student Name, Course, Grade\n");
-			for (Student student : students) {
-				if (student != null) {
-					Integer studentID = student.getStudentID();
-					String studentName = student.getStudentName();
-					String course = student.getCourse();
-					Integer grade = student.getGrade();
+	public void exportCourseStudentsReportAsCSV(Student[] students, String courseKey, String exportFilename)
+			throws IOException {
+		Student[] courseStudents = separateStudentsByCourse(students, courseKey);
 
-					String line = studentID + "," + studentName + "," + course + "," + grade + "\n";
-					writer.write(line);
-				}
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		FileService fileService = new FileService();
+		fileService.writeStudentsToCsv(courseStudents, exportFilename);
 	}
 
 }
